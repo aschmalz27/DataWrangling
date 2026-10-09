@@ -1,0 +1,110 @@
+---
+title: "Homework #1"
+author: "Ayva"
+format:
+  html:
+    toc: true
+    toc-location: left
+    theme: vapor
+    highlight-style: breeze
+    self-contained: true
+---
+
+See all that stuff above. You should change `theme` and `highligh-style` to fit your own style. You can find them here: https://quarto.org/docs/output-formats/html-themes.html
+
+Seriously, you should start finding your own style, so definitely change them!
+
+## Data
+
+You'll be working with the following data files:
+
+-   `artist_genre.txt`
+
+-   `artist_name.csv`
+
+-   `artist_net_worth.csv`
+
+-   `artist_number_one_hits.csv`
+
+-   `artist_studio_albums.csv`
+
+-   `artist_top_hits.csv`
+
+The only file that you are going to need to be careful about is the `artist_genre` file -- be sure to look at the extension and check out the different pd.read_* functions!
+
+## Goals
+
+* Read the files and concatenate them together. If you want to make this as easy as possible you can use glob.glob() to get the file names (not required).
+
+```{python}
+artist_genre = pd.read_table("c:/Users/schma/Documents/artist_data/artist_genre.txt",delimiter=" ")
+```
+
+```{python}
+artist_name = pd.read_csv("c:/Users/schma/Documents/artist_data/artist_name.csv")
+```
+
+```{python}
+import pandas as pd 
+artist_genre = pd.read_table("c:/Users/schma/Documents/artist_data/artist_genre.txt",delimiter=" ")
+artist_name = pd.read_csv("c:/Users/schma/Downloads/artist_name.csv")
+artist_net_worth = pd.read_csv("c:/Users/schma/Downloads/artist_net_worth.csv")
+artist_number_one_hits = pd.read_csv("c:/Users/schma/Downloads/artist_number_one_hits.csv")
+artist_studio_albums = pd.read_csv("c:/Users/schma/Downloads/artist_studio_albums.csv") 
+artist_top_hits = pd.read_csv("c:/Users/schma/Downloads/artist_top_hits.csv")
+
+```
+
+```{python}
+artist_genre["complete"]=artist_genre['Unnamed: 1'].combine_first(artist_genre["genre"])
+```
+
+```{python}
+complete_data = pd.concat([artist_genre,artist_name, artist_net_worth, artist_number_one_hits, artist_studio_albums, artist_top_hits], axis = 1)
+```
+* Create variables to capture the following ideas:
+    + How long has the artist been around? You can just use their birth year and the current year.
+    + Something to capture each artist's net worth per studio album.
+    + How old was each artist when they had their biggest hit?
+
+artist['birth_year'].duplicated()
+artist['current_year'] = 2026
+homework_1.columns
+
+```{python}
+complete_data = complete_data[["artist", "complete", "Birth_Year", "net_worth_millions", "number_one_hits", "studio_albums", "Top_Hit", "Year"]]
+```
+
+
+* Which artist has been around the longest?
+
+`artist_name.csv`
+artist_longest = artist_name['Artist Around Longest'].max()
+
+
+* Which artists are above the mean of net worth per studio album?
+
+
+
+
+* Which genre has the highest average net worth per studio album?
+
+
+
+
+* Plot net worth per studio album, the "been around" variable, and genre. There should be points and colors here. You can use seaborn, plotnine, or anything else you want to use. Just make sure it is clear and easy to read.
+
+
+
+
+* Show me something. There is a nice chunk of data here and you've got to have some neat ideas!
+
+```{python}
+artist_number_one_hits = artist_number_one_hits.rename(columns={"Artist": "artist"})
+
+```
+
+
+* Comment and explain everything! Anything that is not commented and explained will be considered incomplete.
+
+created variables 
